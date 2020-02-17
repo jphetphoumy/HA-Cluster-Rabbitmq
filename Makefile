@@ -1,4 +1,4 @@
-.PHONY: all build deploy create plan apply destroy
+.PHONY: all build deploy create rabbit plan apply destroy
 all: plan
 
 DO_TOKEN?=digital_token
@@ -21,6 +21,9 @@ create:
 	cd ansible && \
 	ansible-playbook playbooks.yml -i hosts -b -u  root -e do_token=${DO_TOKEN}
 
+rabbit:
+	cd ansible && \
+	ansible-playbook rabbitmq.yml -i hosts -b -u  root
 
 destroy:
 	cd terraform && \
